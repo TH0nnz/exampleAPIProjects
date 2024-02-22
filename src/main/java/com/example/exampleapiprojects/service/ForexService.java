@@ -1,6 +1,7 @@
 package com.example.exampleapiprojects.service;
 
-import com.example.exampleapiprojects.util.*;
+
+import com.example.exampleapiprojects.util.Forex;
 import com.example.exampleapiprojects.util.Request.GetForexRequest;
 import com.example.exampleapiprojects.util.Response.GetForexResponseFailed;
 import com.example.exampleapiprojects.util.Response.GetForexResponseSuccess;
