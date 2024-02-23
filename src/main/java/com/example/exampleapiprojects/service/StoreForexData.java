@@ -1,9 +1,11 @@
 package com.example.exampleapiprojects.service;
 
+import com.example.exampleapiprojects.repository.ForexRepository;
 import com.example.exampleapiprojects.util.Forex;
 import com.example.exampleapiprojects.util.TrustSslUtil;
 import com.google.gson.Gson;
 import com.mongodb.client.MongoClients;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -24,7 +26,8 @@ import java.util.stream.Collectors;
 @Service
 public class StoreForexData {
     private final RestTemplate restTemplate = new RestTemplate();
-
+    @Autowired
+    ForexRepository forexRepository;
     public void storeForexData() {
 
         // 獲取需要的請求頭
@@ -40,16 +43,14 @@ public class StoreForexData {
             TrustSslUtil.initDefaultSsl();
             ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.GET, httpEntity, String.class);
 
-
             List<Forex> list = new ArrayList<>();
             Gson gson = new Gson();
             Forex[] forexBodyArray = gson.fromJson(responseEntity.getBody().replace("/", "_").toLowerCase(), Forex[].class);
             for (Forex forex : forexBodyArray) {
                 list.add(forex);
             }
+            forexRepository.insert(list);
 
-            MongoTemplate mongoTemplate = new MongoTemplate(MongoClients.create(), "forex");
-            mongoTemplate.insert(list, "info");
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
