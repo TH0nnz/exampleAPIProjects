@@ -1,33 +1,26 @@
 package com.example.exampleapiprojects.service;
 
 
-
-//import com.example.exampleapiprojects.config.MongoDbConfig;
+import com.example.exampleapiprojects.entity.Forex;
 import com.example.exampleapiprojects.repository.ForexRepository;
-import com.example.exampleapiprojects.util.Forex;
 import com.example.exampleapiprojects.util.Request.GetForexRequest;
 import com.example.exampleapiprojects.util.Response.GetForexResponseFailed;
 import com.example.exampleapiprojects.util.Response.GetForexResponseSuccess;
 import com.example.exampleapiprojects.util.Response.ResponseCurrency;
 import com.example.exampleapiprojects.util.Response.ResponseError;
-
-import com.mongodb.client.MongoClients;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class ForexService {
 
-@Autowired
+    @Autowired
     ForexRepository forexRepository;
 
     public Object getByDate(GetForexRequest request) {
@@ -39,7 +32,7 @@ public class ForexService {
             Date toDate = dateFormat.parse(request.getEndDate());
 
             ArrayList<ResponseCurrency> currency = new ArrayList<ResponseCurrency>();
-             result = forexRepository.findForexBetweenDate(fromDate, toDate);
+            result = forexRepository.findForexBetweenDate(fromDate, toDate);
             for (Forex forex : result) {
                 currency.add(new ResponseCurrency(forex.getDate(), forex.getUsd_ntd()));
             }

@@ -1,4 +1,4 @@
-package com.example.exampleapiprojects.util;
+package com.example.exampleapiprojects.entity;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

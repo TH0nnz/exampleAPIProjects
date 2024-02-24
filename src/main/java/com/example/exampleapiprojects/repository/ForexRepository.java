@@ -1,6 +1,6 @@
 package com.example.exampleapiprojects.repository;
 
-import com.example.exampleapiprojects.util.Forex;
+import com.example.exampleapiprojects.entity.Forex;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

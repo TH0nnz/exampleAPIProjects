@@ -18,7 +18,7 @@ public class ForexController {
     ForexService forexService;
 
     @RequestMapping(value = "/getForex", method = RequestMethod.POST, produces="application/json")
-    public Object getByDate(@RequestBody String str) throws JsonProcessingException {
+    public Object getByDate(@RequestBody String str)  {
         Gson gson = new Gson();
         GetForexRequest request = gson.fromJson(str, GetForexRequest.class);
         return  forexService.getByDate(request);
