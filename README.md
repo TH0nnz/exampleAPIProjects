@@ -1,3 +1,7 @@
+https://jh3ngt0m.notion.site/Mongo-DB-228eaad30f6148c79b33ad5cd6199151?pvs=4
+
+
+
 use forex
 db.info.insertMany( 
 [{"Date":ISODate("20240102"),"USD/NTD":"30.866","RMB/NTD":"4.325685","EUR/USD":"1.1031","USD/JPY":"141.345","GBP/USD":"1.2757","AUD/USD":"0.6832","USD/HKD":"7.81295","USD/RMB":"7.1355","USD/ZAR":"18.3847","NZD/USD":"0.6312"},
